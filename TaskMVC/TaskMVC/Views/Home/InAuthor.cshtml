@@ -1,0 +1,50 @@
+﻿@using Data.Models
+@model Author
+
+@{
+    ViewBag.Title = "InAuthor";
+}
+
+<div>
+    <h3>Автор @Model.Name</h3>
+    <hr />
+    <dl>
+        <dt> Имя </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt> Фамилия </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt> Отчество </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt> День рождения </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt> Телефон </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt> Книги </dt>
+        <dd>
+            <ul>
+                @foreach (Book book in Model.Books)
+                {
+                    <li>@book.Name (@book.Genre)</li>
+                }
+            </ul>
+        </dd>
+        @Html.ActionLink("Редкатировать", "EditAuthor", new { authorId = @Model.AuthorId })
+    </dl>
+        
+</div>
+

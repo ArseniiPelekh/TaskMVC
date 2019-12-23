@@ -1,0 +1,79 @@
+﻿@model Data.Models.Author
+@using Data.Models
+
+@{
+    ViewBag.Title = "Программа";
+}
+
+<h3>Редактор автора</h3>
+
+@using (Html.BeginForm())
+{
+    <div class="panel-body">
+
+        @foreach (var property in ViewData.ModelMetadata.Properties)
+        {
+            if (property.PropertyName != "Books")
+            {
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @if (property.PropertyName == "Description")
+                    {
+                        @Html.TextArea(property.PropertyName, null,
+                            new { @class = "form-control", rows = 5 })
+                    }
+                    else
+                    {
+                        @Html.TextBox(property.PropertyName, null,
+                               new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessage(property.PropertyName)
+                </div>
+            }
+        }
+    </div>
+    <input type='button' id="curentBookName" onclick="createAddBook()" value='Добавить книгу' />
+    <hr />
+
+    <div id="createBook" style="display:none;">
+        <input id="nameBook" type="text" placeholder="Name Book" />
+        <input id="genreBook" type="text" placeholder="Genre Book" />
+        <input id="PageNumberBook" type="number" placeholder="200" />
+
+        <input type="hidden" id="idAuthorBook" name="modelAttr" value="@Model.AuthorId" />
+
+        <input type='button' id="curentBookName" onclick="AddBook()" value='Добавить' />
+    </div>
+
+
+    <div>
+
+        <hr>
+        <b>Книги</b>
+        <ul>
+            @foreach (Book book in Model.Books)
+            {
+                <br />
+                <div id="rectangle">
+                    <pre>     Название:  @book.Name
+     Жанр:      @book.Genre
+Кол-во страниц: @book.PageNumber</pre>
+                </div>
+            }
+        </ul>
+        <ul>Добавленные книги:</ul>
+
+        <ul id="BookListItems" />
+    </div>
+    <hr />
+
+    <div id="results"></div>
+
+    <br />
+
+    <div>
+        <input type="submit" onclick="SaveBook()" id="saveAll" value="Сохранить" class="btn btn-default" />
+    </div>
+}
+
+

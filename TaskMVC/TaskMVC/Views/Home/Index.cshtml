@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Data.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>Название книги</th>
+        <th>Жанр</th>
+        <th>Количество страниц</th>
+        <th>Имя автора</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Name) @Html.DisplayFor(modelItem => item.Author.Surname)
+            </td>
+            <td>
+                @Html.ActionLink("Информация", "InAuthor", new { id = item.Author.AuthorId })
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    <!-- @Html.ActionLink("Список авторов", "InAuthor") -->
+</p>      
+
+
