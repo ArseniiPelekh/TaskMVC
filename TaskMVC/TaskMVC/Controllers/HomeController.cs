@@ -8,9 +8,9 @@ namespace TaskMVC.Controllers
     {
 
         private UnitOfWork _unitOfWork;
-        public HomeController(UnitOfWork repo)
+        public HomeController(UnitOfWork unitOfWork)
         {
-            _unitOfWork = repo;
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult BooksAdd()

@@ -45,11 +45,5 @@ namespace Data.DataBase
             var book = db.Books.Include(p => p.Author);
             return book;
         }
-
-        public bool GetTrue(int id)
-        {
-            return (db.Books.Find(id) != null) ? true : false;
-
-        }
     }
 }

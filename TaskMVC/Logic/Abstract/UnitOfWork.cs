@@ -28,7 +28,7 @@ namespace Data.Abstract
             get
             {
                 if (authorRepository == null)
-                    authorRepository = new AuthorRepository(db);
+                    authorRepository = new AuthorRepository();
                 return authorRepository;
             }
         }

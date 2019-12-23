@@ -11,7 +11,7 @@ namespace Data.DataBase
     {
         private LibraryContext db;
 
-        public AuthorRepository(LibraryContext context)
+        public AuthorRepository()
         {
             db = new LibraryContext();
         }
@@ -29,7 +29,6 @@ namespace Data.DataBase
 
         public Author GetAuthor(int id)
         {
-            // Athor athor = db.Athors.FirstOrDefault(a => a.AthorId == id);
             return db.Authors.Find(id);
         }
 
